@@ -1,0 +1,17 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.log
+*.synctex.gz
+*.out
+*.toc
+
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Output PDF (remove this line if you want to commit it)
+report.pdf
