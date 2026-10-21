@@ -81,7 +81,7 @@ means_types_apts <- cleaned_mydata |>
     count = n(), 
     mean_price = mean(price, na.rm = TRUE), #calculates the mean and exludes all missing values
     median_price = median(price, na.rm = TRUE), #-//-
-    mean_size = mean(size, na.rm = TRUE), #-//-
+    mean_size = mean(size_m2, na.rm = TRUE), #-//-
     mean_price_m2 = mean(price_per_m2, na.rm = TRUE) #-//-
   )
 print(arrange(means_types_apts, mean_price_m2)) #prints the summary and also arranges the prices per m2 from lowest to highest
