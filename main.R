@@ -2,12 +2,15 @@
 #tidyverse
 #
 
+(60500618+27037154+96674995)%%60
+
+
 library(tidyverse)
 
 
 #PART 1
 # load() returns the NAMES of the objects it created; check what you got
-loaded <- load("raw_data/dataset_07.RData")
+loaded <- load("raw_data/dataset_47.RData")
 length(loaded)                       # e.g. "myData"
 myData <- get(loaded[1])        # rename to something short (adjust if >1 object)
 
