@@ -9,11 +9,9 @@ library(tidyverse)
 
 
 #PART 1
-# load() returns the NAMES of the objects it created; check what you got
 loaded <- load("raw_data/dataset_07.RData")
-length(loaded)                       # e.g. "myData"
-myData <- get(loaded[1])        # rename to something short (adjust if >1 object)
-
+length(loaded)                      
+myData <- get(loaded[1])      
 
 dim(myData)
 names(myData)
@@ -36,9 +34,7 @@ anyNA(myData)
 colSums(is.na(myData))
 sum(is.na(myData))
 
-# --- 5. Possible values of categorical variables ---
 #Values of categorical variables ( getting from head function - flat_type, rooms, special_features, properties, orientation, floors and n of floors)
-
 unique(myData$flat_type)
 unique(myData$rooms)
 unique(unlist(myData$special_features)) # unlist due to being lists of categorical variables
