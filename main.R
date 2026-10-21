@@ -84,17 +84,14 @@ means_types_apts <- cleaned_mydata |>
 print(arrange(means_types_apts, mean_price_m2)) #prints the summary and also arranges the prices per m2 from lowest to highest
 
 #Part 4
-has_property <- function(list_properties, target) { #list_properties is just cleaned_mydata$properties and target is for example the dishwasher or any other text value in the property vector
-  sapply(list_properties, function(x) target %in% x) #sapply goes through every single apartment and 'target %in% x' it returns TRUE or FALSE, e.g. if the vector contains dishwasher then it returns TRUE to the newly created column in the cleaned dataset
-}
-has_feature <-function(list_features, target) { #the same as before
-  sapply(list_features, function(x) target %in% x)
+has_property_feature <- function(list_properties_features, target) { 
+  sapply(list_properties_features, function(x) target %in% x) #sapply goes through every single apartment and 'target %in% x' it returns TRUE or FALSE, e.g. if the vector contains dishwasher then it returns TRUE to the newly created column in the cleaned dataset
 }
 cleaned_mydata <- cleaned_mydata |>
   mutate( #adds new columns whether the apartment has these properties
-    has_garage = has_feature(cleaned_mydata$special_features, 'garage'), #usage of our function
-    has_balcony = has_feature(cleaned_mydata$special_features, 'balcony'),
-    has_dishwasher = has_property(cleaned_mydata$properties, 'dishwasher')
+    has_garage = has_property_feature(cleaned_mydata$special_features, 'garage'),
+    has_balcony = has_property_feature(cleaned_mydata$special_features, 'balcony'),
+    has_dishwasher = has_property_feature(cleaned_mydata$properties, 'dishwasher')
   )
 sum(cleaned_mydata$has_dishwasher, na.rm = TRUE)#just to check whether they are properties that are having one of the following features
 sum(cleaned_mydata$has_balcony, na.rm = TRUE)
