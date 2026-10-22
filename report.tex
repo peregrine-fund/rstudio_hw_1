@@ -12,8 +12,12 @@ First homework of R-studio \ldots
 
 \section*{task}
 Kuba part
-\section*{Second task}
-
+\section*{Lukas's Parts}
+I did parts 2,4,6 and marginally part 3. First, I created cleanedmydata from MyData by using function mutate which adds new columns to our dataset. I converted size of apartments to num values by using parsenumbers which it first converts it to a string and then recognizes and retains the num value. The same thing was done with the number of rooms. For separating coordinates, I used function separate, where I firstly define to which new columns I want to put my separated data in, and then I provide a parameter how should they be separate. THe parameter was ', ?' which translates as separate at ',' and ' ?' checks whether there is an optional blank space.
+In the part 3, I have created new df called meanstypesapts which contains a summary of data. First, I used groupby ti convert data from cleaneddata into a data frame where all operations are then performed by group rather than individually. Then I used na.rm = TRUE which ignores any NA values.
+For part 4, I created a function haspropertyfeature. The most important thing is sapply() which loops over vector and then applies specified function or operation to each element. In function(listpropertiesfeatures, target), listpropertiesfeatures is the column which is either cleanedmydata.specialfeatures. or cleanedmydata.properties. and target are items (garage, elevator, dishwasher) of individual vectors in the columns.
+In the code there are also sum function, their role was to check whether there are any specified items or whether my previous function is wrong. (it was useful, as I was for a couple of minutes wondering where my mistake is (as sum of garages was 0) then I realized that I have wrongly written the name of the column).
+For part 6, I used filter function which filtered apts by given parameters. For hasgarage, hasbalcony, I used (hasgarage | hasbalcony) where | stands for or
 
 
 \end{document}
