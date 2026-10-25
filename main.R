@@ -2,7 +2,7 @@
 #tidyverse
 #
 
-(60500618+27037154+96574995)%%60
+(60500618+27037154+96574995)%%60 #calculating our rData number
 
 
 library(tidyverse)
@@ -10,7 +10,10 @@ library(tidyverse)
 
 #PART 1
 loaded <- load("raw_data/dataset_07.RData")
-length(loaded)                      
+loaded[2] # just curious whether theres another object
+
+print(loaded)# could see n of objects by printing instead of blidnly quessing or by length(loaded)                      
+
 myData <- get(loaded[1])      
 
 dim(myData)
@@ -37,6 +40,9 @@ sum(is.na(myData))
 #Values of categorical variables ( getting from head function - flat_type, rooms, special_features, properties, orientation, floors and n of floors)
 unique(myData$flat_type)
 unique(myData$rooms)
+
+
+unique(myData$special_features) # dont want this output, should do unlist
 unique(unlist(myData$special_features)) # unlist due to being lists of categorical variables
 unique(unlist(myData$properties)) 
 unique(myData$orientation)
@@ -52,7 +58,11 @@ count(myData, special_features, sort = TRUE)
 myData <- myData %>%
   mutate(
     size = parse_number(size),
-    room_count = parse_number(rooms))
+    room_count = parse_number(rooms))# really complex could be done much simpler as demonstated bellow
+
+myData$size <- parse_number(myData$size)
+myData$room_count <- parse_number(myData$rooms)
+
 
 summary(myData[sapply(myData, is.numeric)])
 
