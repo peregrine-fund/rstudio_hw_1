@@ -92,6 +92,48 @@ means_types_apts <- cleaned_mydata |>
   )
 print(arrange(means_types_apts, mean_price_m2)) #prints the summary and also arranges the prices per m2 from lowest to highest
 
+orientation_apartmens <- cleaned_mydata |> 
+  group_by(nums_rooms, orientation) |>  #group apartments by orientation and number of rooms
+  summarise(
+    count= n(),
+    mean_price_m2 = mean(price_per_m2, na.rm = TRUE),
+  ) |>
+  filter(count>4) #only count sufficiently large samples
+
+print(orientation_apartmens)
+arrange(orientation_apartmens,mean_price_m2)
+
+
+# does not work as if is not made for vectors
+#app_floor <- cleaned_mydata |>
+ # mutate(
+  #  if (number_of_floors == floor)
+   # {floor_type = "top"
+  #  } else if( floor == 0){
+  #    floor_type = "ground"
+   # } else{
+    #  floor_type = "intermediate"
+  #  },)|>
+#  group_by(floor_type)
+
+
+
+app_floor <- cleaned_mydata |>
+  mutate(
+    floor_type = if_else(floor ==0, "ground",
+                if_else(floor == number_of_floors, "top", "intermediate")) #finding where is floor
+  ) |>
+  group_by(floor_type)|>
+  summarise(
+    count= n(),
+    mean_price_m2 = mean(price_per_m2, na.rm = TRUE),
+    price = mean(price, na.rm = TRUE),
+    size = mean(size, na.rm = TRUE),
+  )
+
+app_floor = na.omit(app_floor) #remove na
+print(app_floor)
+    
 #Part 4
 has_property_feature <- function(list_properties_features, target) { 
   sapply(list_properties_features, function(x) target %in% x) #sapply goes through every single apartment and 'target %in% x' it returns TRUE or FALSE, e.g. if the vector contains dishwasher then it returns TRUE to the newly created column in the cleaned dataset
@@ -105,6 +147,57 @@ cleaned_mydata <- cleaned_mydata |>
 sum(cleaned_mydata$has_dishwasher, na.rm = TRUE)#just to check whether they are properties that are having one of the following features
 sum(cleaned_mydata$has_balcony, na.rm = TRUE)
 sum(cleaned_mydata$has_garage, na.rm = TRUE)
+#Part 5
+variables <- c(
+  "price",
+  "size",
+  "room_count",
+  "price_per_m2",
+  "floor",
+  "number_of_floors"
+)
+
+observs = integer(length(variables)) #creating vectors for variables 
+missings = integer(length(variables))
+means = integer(length(variables))
+medians = integer(length(variables))
+std_devs = integer(length(variables))
+mins = integer(length(variables))
+maxs = integer(length(variables))
+
+
+
+for (i in seq_along(variables)) {
+  observs[i] <- length(cleaned_mydata[[variables[i]]]) #calculating values of variables using for loop
+  missings[i] <- sum(is.na(cleaned_mydata[[variables[i]]]))
+  means[i] <- mean(cleaned_mydata[[variables[i]]], na.rm = TRUE)
+  medians[i] <- median(cleaned_mydata[[variables[i]]], na.rm = TRUE)
+  std_devs[i] <- sd(cleaned_mydata[[variables[i]]], na.rm = TRUE)
+  mins[i] <- min(cleaned_mydata[[variables[i]]], na.rm = TRUE)
+  maxs[i] <- max(cleaned_mydata[[variables[i]]], na.rm = TRUE)
+}
+
+obs_data = cleaned_mydata  #list for lapply
+obs_data = obs_data[variables]
+
+
+rep_ops <- tibble(
+  measured_thing = variables,
+  observs = observs,
+  observs2 = lapply(obs_data, function(x) length(x)), #calculating values using lapply
+  missings,
+  missings2 = lapply(obs_data, function(x) sum(is.na(x))),
+  means,
+  means2 = lapply(obs_data, mean, na.rm = TRUE),
+  medians,
+  medians2 = lapply(obs_data, median, na.rm = TRUE),
+  std_devs,
+  std_devs2 = lapply(obs_data, sd, na.rm = TRUE),
+  mins,
+  mins2 = lapply(obs_data, min, na.rm = TRUE),
+  maxs,
+  maxs2 = lapply(obs_data, max, na.rm = TRUE),
+)         
 #Part 6
 matching_apartments <- cleaned_mydata |>
   filter( #filtering apartments for potential customer by given parameters
