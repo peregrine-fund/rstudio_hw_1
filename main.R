@@ -55,10 +55,10 @@ count(myData, special_features, sort = TRUE)
 
  
 
-myData <- myData %>%
-  mutate(
-    size = parse_number(size),
-    room_count = parse_number(rooms))# really complex could be done much simpler as demonstated bellow
+#myData <- myData %>%
+#  mutate(
+#    size = parse_number(size),
+#    room_count = parse_number(rooms))# really complex could be done much simpler as demonstated bellow
 
 myData$size <- parse_number(myData$size)
 myData$room_count <- parse_number(myData$rooms)

@@ -1,27 +1,30 @@
 \documentclass{article}
-\title{A Small \LaTeX{} Article Template\thanks{To your mother}}
+\usepackage{hyperref}
+
+\title{First homework to programming in R}
 \author{Michal Stránský \and Lukáš Doležal \and Jakub Černý}
-
 \date{\today}
-\begin{document}
 
+\begin{document}
 \maketitle
 
+Code and history: \url{https://github.com/peregrine-fund/rstudio_hw_1}
 
-First homework of R-studio \ldots 
+
+
+
+
+
+
 \section*{task}
+\subsection*{Kuba part}
+I did the beginning phases. Firsly I created new github repository for the team to share the files, then created a tex and .R files and uploaded them via git. I had to filter out via gitignore any helper files that my tex software ( texmaker) produced so repo wouldnt be filed with bloat. Secondly I calculated our number of the dataset, downloaded it and uploaded it to github and lastly Ive done the part 1 of the homework, which was mostly consisted of loading dataset, summarizing it and some simple cleaning.
 
+Ive found that dataset contained dirty variable in AsIs classes. I had to clean them and analyze them ( tried to get unique values but because its list I had to do unlist). 
 
+Three variables, thats floor, orientation and size, were missing values and 4 variables were numeric to make summary of. 
 
-
-
-
-\section*{task}
-\subsection*{Kuba part}}
-I did the beginning phases. Firsly I created new github repository for the team to share the files, then created a tex and .R files and uploaded them via git. I had to filter out via gitignore any helper files that my tex software ( texmaker) produced so repo wouldnt be filed with bloat. Secondly I calculated our number of the dataset, downloaded it and uploaded it to github and lastly Ive done the part 1 of the homework.
-
-
-
+Ive also tried experiencing with the tidyR library. It took me long to download since I work on linux and had to compile it. Ive used count, mutate, parse number and also pipe for cleaning AsIs variables ( but decided to use basic R in the end). 
 
 
 
