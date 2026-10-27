@@ -36,6 +36,14 @@ In the code there are also sum function, their role was to check whether there a
 For part 6, I used filter function which filtered apts by given parameters. For hasgarage, hasbalcony, I used (hasgarage | hasbalcony) where | stands for or
 
 
+
+\subsection*{Michal's  Part}
+I did part 5 and 2nd and 3rd point of part 3. 
+In part 3 I first created function jointly combining orientation and number of rooms. Most expensive combination is 1 south oriented room, and the cheapest are 2 north oriented rooms. North oriented rooms are on average cheapest and south oriented are priciest. Filtering by floor was more problematic, I originally wanted to use classical if and else if function, which was unfortunately impossible as I tried condition whole vector, which function didn’t like. I found out that there exist vectorized version of said functions in tidy verse which I used. To filter apartments by floor type. Apartments in lower floors were both cheaper per meter and smaller, and the top apartments were biggest and priciest. This is expected behaviour as upper apartments are viewed as more prestigious, safer and private. 
+In part 5 I first created vectors for variables, then I made for cycle with all the measured properties and cycled them through all the variables. For lapply calculation I created extra dataset, which contained all measured variables. I am little bit surprised my method of creating this list worked. At last, I put vectors from for loop into tibble, and next to them created functions which created same result using lapply. I believe both solutions have some positives and negatives. Disadvantage of for loop method was existence of separate function, which calculates the values. For lapply approach was necessary to create separate list which only contained variables we were interested in, but overall, it seemed to me cleaner than for loop method and was maybe little easier.
+
+
+
 \section*{•}
 
 \end{document}
